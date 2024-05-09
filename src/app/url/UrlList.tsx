@@ -10,7 +10,7 @@ import {
 import Link from "@mui/material/Link";
 
 async function getUrls() {
-  return await fetch(`${process.env.URL_SHORTENER_API}/api/url`, {
+  return await fetch(`${process.env.NEXT_PUBLIC_URL_SHORTENER_API}/url`, {
     method: "GET",
     next: { revalidate: 0 },
   })

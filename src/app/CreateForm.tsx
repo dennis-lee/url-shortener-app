@@ -15,7 +15,7 @@ export default function CreateForm() {
     e.preventDefault();
     setIsLoading(true);
 
-    await fetch("http://localhost:3000/api/url", {
+    await fetch(`${process.env.NEXT_PUBLIC_URL_SHORTENER_API}/url`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
