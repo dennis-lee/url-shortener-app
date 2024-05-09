@@ -10,6 +10,10 @@ export default function Home() {
       <Typography variant="h1" textAlign={"center"} gutterBottom>
         URL Shortener
       </Typography>
+      <Typography variant="h6">
+        NOTE: Mixed/insecure content must be allowed on the browser for the
+        Vercel-deployed app to work.
+      </Typography>
       <CreateForm />
       <UrlList />
     </Container>
