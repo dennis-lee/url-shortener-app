@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-import { Stack, Button, TextField } from "@mui/material"
+import { Stack, Button, TextField } from "@mui/material";
 
 export default function CreateForm() {
-  const router = useRouter()
+  const router = useRouter();
 
-  const [url, setUrl] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const [url, setUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
 
-    const options = {
+    await fetch(`${process.env.NEXT_PUBLIC_URL_SHORTENER_API}/url`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,32 +23,14 @@ export default function CreateForm() {
       body: JSON.stringify({
         url,
       }),
-    }
-
-    await fetch("/api/handleCreateUrl", options).then((res) => {
+    }).then((res) => {
       if (res.status === 200) {
-        router.refresh()
-        setUrl("")
-        setIsLoading(false)
+        router.refresh();
+        setUrl("");
+        setIsLoading(false);
       }
-    })
-
-    // await fetch(`${process.env.NEXT_PUBLIC_URL_SHORTENER_API}/url`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     url,
-    //   }),
-    // }).then((res) => {
-    //   if (res.status === 200) {
-    //     router.refresh();
-    //     setUrl("");
-    //     setIsLoading(false);
-    //   }
-    // });
-  }
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -74,5 +56,5 @@ export default function CreateForm() {
         </Button>
       </Stack>
     </form>
-  )
+  );
 }
