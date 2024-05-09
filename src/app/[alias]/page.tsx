@@ -1,24 +1,27 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation"
 
 async function getUrl(alias: string) {
-  return await fetch(`${process.env.URL_SHORTENER_API}/api/url/${alias}`, {
-    method: "GET",
-  })
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_URL_SHORTENER_API}/url/${alias}`,
+    {
+      method: "GET",
+    }
+  )
     .then((res) => {
-      return res.json();
+      return res.json()
     })
     .then((data) => {
-      return data.url;
-    });
+      return data.url
+    })
 }
 
 export default async function UrlRedirectPage({ params }: any) {
-  let url: string;
+  let url: string
   try {
-    url = await getUrl(params.alias);
+    url = await getUrl(params.alias)
   } catch (e) {
-    notFound();
+    notFound()
   }
 
-  redirect(url);
+  redirect(url)
 }
