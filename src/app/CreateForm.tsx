@@ -27,8 +27,9 @@ export default function CreateForm() {
       if (res.status === 200) {
         router.refresh();
         setUrl("");
-        setIsLoading(false);
       }
+
+      setIsLoading(false);
     });
   };
 
