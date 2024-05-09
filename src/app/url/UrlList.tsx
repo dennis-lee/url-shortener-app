@@ -43,7 +43,7 @@ export default async function UrlList() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {urls.map((u) => (
+                {urls.map((u: any) => (
                   <TableRow key={u.alias}>
                     <TableCell>
                       <Link target="_blank" href={u.alias}>
