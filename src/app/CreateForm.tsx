@@ -17,6 +17,7 @@ const URL_VALIDATOR_OPTIONS = {
 
 export default function CreateForm() {
   const form = useForm<FormValues>({
+    mode: "onChange",
     defaultValues: {
       url: "",
     },
@@ -68,7 +69,7 @@ export default function CreateForm() {
           type="submit"
           variant="contained"
           className="btn-primary"
-          disabled={isLoading}
+          disabled={isLoading || !formState.isValid}
           fullWidth
         >
           {isLoading && <span>Shortening...</span>}
